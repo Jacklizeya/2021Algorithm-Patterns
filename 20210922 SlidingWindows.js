@@ -25,3 +25,26 @@ const smallest_subarray_with_given_sum = function (s, arr) {
  console.log("left and right", leftIndex, rightIndex)
   if (sum >= s) { return rightIndex - leftIndex - 1 } else { return 0 }
 };
+
+
+// A better solution with Sliding window
+
+const smallest_subarray_with_given_sum = function(s, arr) {
+  // TODO: Write your code here
+  let sum = 0
+  let leftIndex = 0
+  let minLength = Infinity
+
+  for (let rightIndex = 0; rightIndex < arr.length; rightIndex++) {
+   sum = sum + arr[rightIndex]
+    while (sum >= s) {
+      // do one calculation every time
+      minLength = Math.min(minLength, rightIndex - leftIndex + 1)
+      sum = sum - arr[leftIndex]
+      leftIndex ++
+    }
+
+  }
+
+   console.log(minLength)
+};
