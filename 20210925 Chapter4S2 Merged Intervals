@@ -1,0 +1,23 @@
+let intervals = [[1,4], [2,6], [3,5]]
+
+let storage = []
+let sortedIntervals = intervals.sort((a, b)=>{return a[0] - b[0]})
+console.log(sortedIntervals)
+
+let latestStart = sortedIntervals[0][0]
+let latestEnd = sortedIntervals[0][1]
+for (let i = 1; i < sortedIntervals.length; i++) {
+  let currentInterval = sortedIntervals[i]
+
+  if (currentInterval[0] > latestEnd) {
+    storage.push([latestStart, latestEnd])
+    latestStart = currentInterval[0]
+    latestEnd = currentInterval[1]
+  } else {
+    latestEnd = Math.max(latestEnd, currentInterval[1])
+  }
+}
+
+storage.push([latestStart, latestEnd])
+
+console.log(storage)
