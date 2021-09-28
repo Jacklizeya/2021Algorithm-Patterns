@@ -27,3 +27,37 @@ let solveKnapsack = function(profits, weights, capacity) {
 
 console.log(solveKnapsack(profits, weights, capacity))
 console.log(total)
+
+
+// Bottom up Dynamic Programming
+
+
+var profits = [1, 6, 10, 16];
+var weights = [1, 2, 3, 5];
+var capacity = 7 
+
+const dp = Array(profits.length).fill(0).map(() => Array(capacity + 1).fill(0));
+console.log(dp)
+
+for (let col =0 ; col <= capacity ; col++ ) {
+  if (weights[0] <= capacity) {dp[0][col] = profits[0]}
+}
+
+for (let row =0 ; row < weights.length ; row++ ) {
+  dp[row][0] = 0
+}
+
+for (let row = 1; row < weights.length; row++) {
+  for (let col = 1; col <= capacity; col++) {
+    console.log(row, col)
+    let profits1 = dp[row - 1][col]
+
+    let profits2 = 0
+    if (col - weights[row] >=0 ) {profits2 = profits[row] + dp[row- 1][ col - weights[row]]}
+    
+    dp[row][col] = Math.max(profits1, profits2)
+  }
+}
+
+
+console.log(dp)
