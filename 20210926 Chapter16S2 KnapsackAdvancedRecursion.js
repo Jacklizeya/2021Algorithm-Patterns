@@ -61,3 +61,17 @@ for (let row = 1; row < weights.length; row++) {
 
 
 console.log(dp)
+// How to get the Path
+let totalProfit = dp[weights.length - 1][capacity]
+console.log(totalProfit)
+
+let result = ""
+let colPointer = capacity
+for (let rowPointer = weights.length - 1; rowPointer >= 1 ; rowPointer--) {
+  console.log(rowPointer, colPointer)
+  if (dp[rowPointer][colPointer] === dp[rowPointer - 1][colPointer]) {}
+  else {result += rowPointer; colPointer = colPointer - weights[rowPointer]; totalProfit = totalProfit - profits[rowPointer]}
+}
+
+if (colPointer !== 0) {result += "0"}
+console.log(colPointer, result)
