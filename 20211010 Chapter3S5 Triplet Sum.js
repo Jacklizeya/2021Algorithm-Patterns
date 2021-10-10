@@ -3,7 +3,7 @@ const search_triplets = function (arr) {
   let triplets = [];
   // TODO: Write your code here
 
-  for (let i = 0; i < arr.length - 3; i++) {
+  for (let i = 0; i < arr.length - 2; i++) {
     console.log(i)
     // prevent duplicates
     if (arr[i] === arr[i - 1]) { continue }
