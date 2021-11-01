@@ -11,29 +11,30 @@ class TreeNode {
 const find_sum_of_path_numbers = function (root) {
     // TODO: Write your code here
     let sum = 0
-    exploreAndComeBack(root)
+    exploreChildrenAndComeBack(root)
     return sum
 
-    function exploreAndComeBack(root, array = [root.value]) {
+    function exploreChildrenAndComeBack(root, array = [root.value]) {
         if (root.left === null && root.right === null) {
             sum += calculateSum(array)
             array.pop()
         }
         else if (root.left === null && root.right !== null) {
             array.push(root.right.value)
-            exploreAndComeBack(root.right, array)
+            exploreChildrenAndComeBack(root.right, array)
             array.pop()
         }
         else if (root.left !== null && root.right === null) {
             array.push(root.left.value)
-            exploreAndComeBack(root.left, array)
+            exploreChildrenAndComeBack(root.left, array)
             array.pop()
         }
         else if (root.left !== null && root.right !== null) {
+            // There is some hard Logic here
             array.push(root.left.value)
-            exploreAndComeBack(root.left, array)
+            exploreChildrenAndComeBack(root.left, array)
             array.push(root.right.value)
-            exploreAndComeBack(root.right, array)
+            exploreChildrenAndComeBack(root.right, array)
         }
     }
 
